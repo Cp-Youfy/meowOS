@@ -5,7 +5,7 @@
 			"format": "RGBA8888",
 			"size": {
 				"w": 2048,
-				"h": 1775
+				"h": 1868
 			},
 			"scale": 0.25,
 			"frames": [
@@ -388,24 +388,24 @@
 					}
 				},
 				{
-					"filename": "meowassets/right-leap/leap6.png",
+					"filename": "meowassets/default/front.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
 						"w": 512,
-						"h": 341
+						"h": 512
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 512,
-						"h": 341
+						"h": 512
 					},
 					"frame": {
-						"x": 0,
-						"y": 1007,
+						"x": 1536,
+						"y": 1356,
 						"w": 512,
-						"h": 341
+						"h": 512
 					}
 				}
 			]
@@ -414,6 +414,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:fcabd26594ca84ee25d7656df4b79c32:8c9ba61cd17cb1e287ab2a9dd538ec8d:0c90b9ae8b3d48d6500f6626a5b7af7b$"
+		"smartupdate": "$TexturePacker:SmartUpdate:98d31e27f614a81c785c26af1b39fe46:8591527740d5d3bf2151383bcd702fc8:0c90b9ae8b3d48d6500f6626a5b7af7b$"
 	}
 }
