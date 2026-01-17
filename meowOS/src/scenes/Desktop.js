@@ -27,7 +27,7 @@ export class DesktopBase extends Phaser.Scene {
         this.loadFolders()
 
         // Define collisions
-        this.physics.add.collider(player, this.folders);
+        this.physics.add.collider(player, this.folders, this.handleInteractiveCollision, null, this); // the two colliding objects are passed as params into the callback function
         this.physics.add.collider(player, terminal.background);
 
         // Scene-wide variables
@@ -35,6 +35,7 @@ export class DesktopBase extends Phaser.Scene {
 
         // Welcome message
         terminal.write("Welcome to meowOS!");
+
     }
 
     loadFolders() {
@@ -43,14 +44,33 @@ export class DesktopBase extends Phaser.Scene {
          */
         this.folders = this.physics.add.staticGroup();
 
-        let folder1 = new Folder(this, 200, 400);
+        let folder1 = new Folder(this, 200, 400, "1");
 
         this.folders.add(folder1);
 
     }
 
+    handleInteractiveCollision(player, interactiveObj) {
+        /**
+         * Sets collision status for interactiveObj execution.
+         * interactiveObj can be file or folder.
+         * The player must be standing on the interactiveObj.
+         */
+
+        if (player.body.touching.down && interactiveObj.body.touching.up) {
+            interactiveObj.isColliding = true;
+            interactiveObj.execute()
+        }
+    }
+
     update() {
+        // Update prepares the canvas for the next frame each time
         this.player.handleInput()
+
+        // Reset the state of touched folders for the next frame
+        this.folders.children.entries.forEach(folder => {
+            folder.isTouched = false;
+        });
     }
 
 }

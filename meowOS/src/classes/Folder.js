@@ -19,5 +19,29 @@ export class Folder extends Phaser.GameObjects.Image {
         // Class properties
         this.scene = scene;
         this.fileObject = fileData.find(item => item.id === id);
+        this.cursors = scene.input.keyboard.createCursorKeys();
+        this.isOpen = false;
+    }
+
+    execute() {
+        /**
+         * Handle folder opening. Initialises a corresponding Explorer class.
+         */
+        let keyE = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
+        let currentTime = this.scene.time.now;
+
+        // If the folder is already open, don't allow repeated execution
+        if (keyE.isDown && !this.isOpen) {
+            console.log("Entry");
+            this.isOpen = true;
+        }
+    }
+
+    onClose() {
+        /**
+         * Handles the event of folder being closed.
+         */
+
+        this.isOpen = false;
     }
 }

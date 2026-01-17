@@ -54,7 +54,6 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     createAnimations(scene) {
-
         if (!scene.anims.exists('left')) {
             scene.anims.create({
                 key: 'left',
