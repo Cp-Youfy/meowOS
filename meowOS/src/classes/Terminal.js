@@ -10,8 +10,14 @@ export class Terminal {
         let yPos = 504
         let textPad = 20
 
+        // Initialise class properties
+        this.scene = scene;
+        this.buffer = [];
+        this.showCursor = true;
+
         // Temporary background (to replace with image)
-        scene.add.rectangle(xPos, yPos, 1280, 300, 0x000000, 1).setOrigin(0, 0);
+        this.background = this.scene.add.rectangle(xPos, yPos, 1280, 300, 0x000000, 1).setOrigin(0, 0);
+        this.scene.physics.add.existing(this.background, 1);
 
         this.text = scene.add.text(xPos + textPad, yPos + textPad, '', {
             fontFamily: 'Courier New, monospace',
@@ -20,16 +26,24 @@ export class Terminal {
             wordWrap: { width: 780 }
         });
 
-        // Event handlers
-        scene.input.keyboard.on('keydown', this.keyDown, this);
+        this.setupEventHandlers();
+    }
 
-        // Class variables
-        this.scene = scene
-        this.buffer = []
+    setupEventHandlers() {
+        // Event handlers
+        this.scene.input.keyboard.on('keydown', this.keyDown, this);
+        this.scene.time.addEvent({
+            delay: 500,
+            loop: true,
+            callback: () => {
+                this.showCursor = !this.showCursor;
+                this.updateDisplay()
+            }
+        })
     }
 
     keyDown(event) {
-        let k = event.key
+        let k = event.key;
 
         // Input
         if (k.length === 1) {
@@ -50,14 +64,21 @@ export class Terminal {
     }
 
     updateDisplay() {
-        this.text.setText(this.buffer.join(''));
+        let displayText = this.buffer.join('');
+
+        // Add blinking cursor
+        if (this.showCursor) {
+            displayText += '█';
+        }
+
+        this.text.setText(displayText);
     }
 
     write(line) {
         /**
          * Manually write some output to the terminal
          */
-        this.buffer.push('\n' + line);
+        this.buffer.push(line + '\n');
         this.text.setText(this.buffer.join(''));
     }
 

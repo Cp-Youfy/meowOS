@@ -20,19 +20,21 @@ export class DesktopBase extends Phaser.Scene {
         this.background = this.add.tileSprite(640, 360, 1280, 720, 'background');
         let folders = this.physics.add.staticGroup();
 
-
-        let sampleFolder = this.add.rectangle(200, 600, 80, 80, 0x00f000, 1);
+        let sampleFolder = this.add.rectangle(200, 400, 80, 80, 0x00f000, 1);
         folders.add(sampleFolder);
 
-        let terminal = new Terminal(this)
+        let terminal = new Terminal(this);
         let player = new Player(this, 200, 300).setScale(1.5).refreshBody();
 
         // Define collisions
-        this.physics.add.collider(player, folders)
+        this.physics.add.collider(player, folders);
+        this.physics.add.collider(player, terminal.background);
 
         // Scene-wide variables
-        this.player = player
+        this.player = player;
 
+        // Welcome message
+        terminal.write("Welcome to meowOS!");
     }
 
     update() {
