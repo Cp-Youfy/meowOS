@@ -1,5 +1,6 @@
 import { Player } from '../classes/Player.js'
 import { Terminal } from '../classes/Terminal.js'
+import { Folder } from '../classes/Folder.js'
 
 export class DesktopBase extends Phaser.Scene {
 
@@ -13,21 +14,20 @@ export class DesktopBase extends Phaser.Scene {
             frameWidth: 32,
             frameHeight: 48
         })
+        this.load.image('folder', 'assets/icons/folder.png');
     }
 
     create() {
         // Create initial state
         this.background = this.add.tileSprite(640, 360, 1280, 720, 'background');
-        let folders = this.physics.add.staticGroup();
 
-        let sampleFolder = this.add.rectangle(200, 400, 80, 80, 0x00f000, 1);
-        folders.add(sampleFolder);
-
+        // Initialise external objects
         let terminal = new Terminal(this);
-        let player = new Player(this, 200, 300).setScale(1.5).refreshBody();
+        let player = new Player(this, 200, 300);
+        this.loadFolders()
 
         // Define collisions
-        this.physics.add.collider(player, folders);
+        this.physics.add.collider(player, this.folders);
         this.physics.add.collider(player, terminal.background);
 
         // Scene-wide variables
@@ -35,6 +35,18 @@ export class DesktopBase extends Phaser.Scene {
 
         // Welcome message
         terminal.write("Welcome to meowOS!");
+    }
+
+    loadFolders() {
+        /**
+         * Position all folders manually
+         */
+        this.folders = this.physics.add.staticGroup();
+
+        let folder1 = new Folder(this, 200, 400);
+
+        this.folders.add(folder1);
+
     }
 
     update() {

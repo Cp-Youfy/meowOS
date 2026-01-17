@@ -1,13 +1,20 @@
 export class Player extends Phaser.Physics.Arcade.Sprite {
     /***
      * Defines Player class with relevant animations
+     * @param {object} scene Your current scene object
+     * @param {number} x Starting x-coordinate of player (from center of sprite)
+     * @param {number} y Starting y-coordinate of player (from center of sprite)
      */
 
     constructor(scene, x, y) {
+        // Setup the sprite in the scene
         super(scene, x, y, 'player', 0);
+
         scene.add.existing(this);
         scene.physics.add.existing(this);
 
+        // Set params for the player
+        this.setScale(1.5).refreshBody();
         this.setBounce(0.2);
         this.setCollideWorldBounds(true);
 
