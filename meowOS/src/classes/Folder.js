@@ -9,18 +9,27 @@ export class Folder extends Phaser.GameObjects.Image {
      * @param {string} id ID as retrieved from the json file
      */
 
-    constructor(scene, x, y, id) {
-        // Load the icon
-        super(scene, x, y, 'folder');
+    constructor(scene, x, y, id, scaleFactor) {
+        // Load the icon: Use a random folder sprite
+        let folderSprites = [
+            'fNormal', 'fGoop', 'fKira', 'fSpikes'
+        ]
+        let randomSprite = Phaser.Utils.Array.GetRandom(folderSprites);
+
+        super(scene, x, y, randomSprite);
         scene.add.existing(this);
 
-        this.setScale(0.15);
+        this.setScale(scaleFactor);
 
         // Class properties
         this.scene = scene;
         this.fileObject = fileData.find(item => item.id === id);
         this.cursors = scene.input.keyboard.createCursorKeys();
         this.isOpen = false;
+        this.size = {
+            'width': this.displayWidth,
+            'height': this.displayHeight
+        }
     }
 
     execute() {
@@ -32,10 +41,15 @@ export class Folder extends Phaser.GameObjects.Image {
         // If the folder is already open, don't allow repeated execution
         if (keyE.isDown && !this.isOpen) {
             this.isOpen = true;
-            return this.fileObject
+            return this.fileObject;
         }
 
         return null
+    }
+
+    updatePos(x, y) {
+        this.x = x
+        this.y = y
     }
 
     onClose() {

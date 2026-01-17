@@ -12,7 +12,12 @@ export class DesktopBase extends Phaser.Scene {
     preload() {
         this.load.image('desktop-bg', 'assets/backgrounds/desktop.png');
         this.load.atlas('player', 'assets/player/cat.png', 'assets/player/cat.json')
-        this.load.image('folder', 'assets/icons/folder.png');
+
+        // Folder assets: Preloaded to global asset manager and reusable in all scenes
+        this.load.image('fNormal', 'assets/folders/1.png');
+        this.load.image('fGoop', 'assets/folders/2.png');
+        this.load.image('fKira', 'assets/folders/3.png');
+        this.load.image('fSpikes', 'assets/folders/4.png');
     }
 
     create() {
@@ -22,13 +27,17 @@ export class DesktopBase extends Phaser.Scene {
             'height': 720
         }
 
+        // Factor to scale player by
+        let scaleFactor = 0.2
+        this.folderScale = 0.15
+
         this.physics.world.setBounds(0, 0, this.canvasSize.width, this.canvasSize.height);
 
         this.background = this.add.tileSprite(640, 360, this.canvasSize.width, this.canvasSize.height, 'desktop-bg');
 
         // Initialise external objects
         let terminal = new Terminal(this); // Height set to 0.3 * canvasHeight
-        let player = new Player(this, 200, 300);
+        let player = new Player(this, 200, 300, scaleFactor);
         this.loadFolders()
 
         // Define collisions
@@ -66,12 +75,13 @@ export class DesktopBase extends Phaser.Scene {
         /**
          * Position all folders manually
          */
+
         this.folders = this.physics.add.staticGroup();
 
-        let folder1 = new Folder(this, 200, 400, "1");
+        let folder1 = new Folder(this, 200, 400, "1", this.folderScale);
         this.folders.add(folder1);
 
-        let folder2 = new Folder(this, 500, 300, "2");
+        let folder2 = new Folder(this, 500, 300, "2", this.folderScale);
         this.folders.add(folder2);
     }
 
@@ -97,7 +107,7 @@ export class DesktopBase extends Phaser.Scene {
 
     sceneTransitionExplorer(folderData) {
         // Generate necessary context for Explorer scene
-        let explorerCoords = getRandomCoords(this.canvasSize, this.spawnTop, this.spawnBottom, this.tabSize);
+        let explorerCoords = getRandomCoords(0, this.canvasSize.width, this.spawnTop, this.spawnBottom, this.tabSize);
 
         // Clean up necessary sprites on Desktop (Don't pause DesktopBase so that the terminal keeps running)
         this.player.disable();

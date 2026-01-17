@@ -1,8 +1,9 @@
-export function getRandomCoords(canvasSize, topY, bottomY, tabSize) {
+export function getRandomCoords(leftX, rightX, topY, bottomY, tabSize) {
     /**
      * Get random coordinates to spawn a new window.
      * topY, bottomY determine the boundary of Y values allowed
-     * @param {object} canvasSize {'width': width, 'height': height} of canvasSize
+     * @param {number} leftX Left boundary x coordinate
+     * @param {number} rightX Right boundary x coordinate
      * @param {number} topY Top y coordinate
      * @param {number} bottomY Bottom y coordinate
      * @param {object} tabSize {'width': width, 'height': height} of item size
@@ -10,16 +11,11 @@ export function getRandomCoords(canvasSize, topY, bottomY, tabSize) {
      * @returns {object} {'x': x, 'y': y}
      */
 
-    let allowedWidth = canvasSize.width - tabSize.width;
-    let allowedHeight = bottomY - tabSize.height;
+    let allowedWidth = rightX - leftX - tabSize.width;
+    let allowedHeight = bottomY - topY - tabSize.height;
 
-    let x = Math.floor(Math.random() * allowedWidth);
-    let y = Math.floor(Math.random() * allowedHeight);
-
-    // If the item height is too small, move it to the minimum height
-    if (y < topY) {
-        y = topY;
-    }
+    let x = leftX + Math.floor(Math.random() * allowedWidth);
+    let y = topY + Math.floor(Math.random() * allowedHeight);
 
     return {
         'x': x,

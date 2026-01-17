@@ -6,15 +6,12 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
      * @param {number} y Starting y-coordinate of player (from center of sprite)
      */
 
-    constructor(scene, x, y) {
+    constructor(scene, x, y, scaleFactor) {
         // Setup the sprite in the scene
         super(scene, x, y, 'player', 0);
 
         scene.add.existing(this);
         scene.physics.add.existing(this);
-
-        // Factor to scale player by
-        let scaleFactor = 0.2
 
         // Set params for the player
         this.setScale(scaleFactor).refreshBody();
@@ -22,12 +19,9 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         this.setCollideWorldBounds(true);
         this.body.setMaxVelocity(400, 600); // max x, y velocities...Hopefully stops tunneling through the terminal!
 
-        // Set up fixed collision body
-        let bodyWidth = 512 * scaleFactor
-
         this.createAnimations(scene);
 
-        this.scene = scene
+        this.scene = scene;
         this.isJumping = false;
         this.hasLanded = true; // for preventing tunneling with terminal
         this.facing = 'left'; // current direction
