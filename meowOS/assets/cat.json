@@ -1,0 +1,419 @@
+{
+	"textures": [
+		{
+			"image": "cat.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 2048,
+				"h": 1775
+			},
+			"scale": 0.25,
+			"frames": [
+				{
+					"filename": "meowassets/jump/jump2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 512,
+						"h": 307
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 512,
+						"h": 307
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 512,
+						"h": 307
+					}
+				},
+				{
+					"filename": "meowassets/left-leap/leap2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 512,
+						"h": 307
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 512,
+						"h": 307
+					},
+					"frame": {
+						"x": 512,
+						"y": 0,
+						"w": 512,
+						"h": 307
+					}
+				},
+				{
+					"filename": "meowassets/right-leap/leap2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 512,
+						"h": 307
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 512,
+						"h": 307
+					},
+					"frame": {
+						"x": 1024,
+						"y": 0,
+						"w": 512,
+						"h": 307
+					}
+				},
+				{
+					"filename": "meowassets/left-leap/leap4.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 512,
+						"h": 325
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 512,
+						"h": 325
+					},
+					"frame": {
+						"x": 1536,
+						"y": 0,
+						"w": 512,
+						"h": 325
+					}
+				},
+				{
+					"filename": "meowassets/right-leap/leap4.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 512,
+						"h": 325
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 512,
+						"h": 325
+					},
+					"frame": {
+						"x": 0,
+						"y": 325,
+						"w": 512,
+						"h": 325
+					}
+				},
+				{
+					"filename": "meowassets/left-leap/leap3.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 512,
+						"h": 333
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 512,
+						"h": 333
+					},
+					"frame": {
+						"x": 512,
+						"y": 325,
+						"w": 512,
+						"h": 333
+					}
+				},
+				{
+					"filename": "meowassets/right-leap/leap3.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 512,
+						"h": 333
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 512,
+						"h": 333
+					},
+					"frame": {
+						"x": 1024,
+						"y": 325,
+						"w": 512,
+						"h": 333
+					}
+				},
+				{
+					"filename": "meowassets/jump/jump1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 512,
+						"h": 341
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 512,
+						"h": 341
+					},
+					"frame": {
+						"x": 1536,
+						"y": 325,
+						"w": 512,
+						"h": 341
+					}
+				},
+				{
+					"filename": "meowassets/left-leap/leap1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 512,
+						"h": 341
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 512,
+						"h": 341
+					},
+					"frame": {
+						"x": 0,
+						"y": 666,
+						"w": 512,
+						"h": 341
+					}
+				},
+				{
+					"filename": "meowassets/left-leap/leap6.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 512,
+						"h": 341
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 512,
+						"h": 341
+					},
+					"frame": {
+						"x": 512,
+						"y": 666,
+						"w": 512,
+						"h": 341
+					}
+				},
+				{
+					"filename": "meowassets/left-walk/walk1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 512,
+						"h": 341
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 512,
+						"h": 341
+					},
+					"frame": {
+						"x": 1024,
+						"y": 666,
+						"w": 512,
+						"h": 341
+					}
+				},
+				{
+					"filename": "meowassets/right-leap/leap1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 512,
+						"h": 341
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 512,
+						"h": 341
+					},
+					"frame": {
+						"x": 1536,
+						"y": 666,
+						"w": 512,
+						"h": 341
+					}
+				},
+				{
+					"filename": "meowassets/right-leap/leap6.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 512,
+						"h": 341
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 512,
+						"h": 341
+					},
+					"frame": {
+						"x": 0,
+						"y": 1007,
+						"w": 512,
+						"h": 341
+					}
+				},
+				{
+					"filename": "meowassets/right-walk/walk1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 512,
+						"h": 341
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 512,
+						"h": 341
+					},
+					"frame": {
+						"x": 512,
+						"y": 1007,
+						"w": 512,
+						"h": 341
+					}
+				},
+				{
+					"filename": "meowassets/left-walk/walk2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 512,
+						"h": 349
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 512,
+						"h": 349
+					},
+					"frame": {
+						"x": 1024,
+						"y": 1007,
+						"w": 512,
+						"h": 349
+					}
+				},
+				{
+					"filename": "meowassets/right-walk/walk2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 512,
+						"h": 349
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 512,
+						"h": 349
+					},
+					"frame": {
+						"x": 1536,
+						"y": 1007,
+						"w": 512,
+						"h": 349
+					}
+				},
+				{
+					"filename": "meowassets/jump/jump3.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 512,
+						"h": 372
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 512,
+						"h": 372
+					},
+					"frame": {
+						"x": 0,
+						"y": 1356,
+						"w": 512,
+						"h": 372
+					}
+				},
+				{
+					"filename": "meowassets/left-leap/leap5.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 512,
+						"h": 419
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 512,
+						"h": 419
+					},
+					"frame": {
+						"x": 512,
+						"y": 1356,
+						"w": 512,
+						"h": 419
+					}
+				},
+				{
+					"filename": "meowassets/right-leap/leap5.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 512,
+						"h": 419
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 512,
+						"h": 419
+					},
+					"frame": {
+						"x": 1024,
+						"y": 1356,
+						"w": 512,
+						"h": 419
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:fcabd26594ca84ee25d7656df4b79c32:8c9ba61cd17cb1e287ab2a9dd538ec8d:0c90b9ae8b3d48d6500f6626a5b7af7b$"
+	}
+}
