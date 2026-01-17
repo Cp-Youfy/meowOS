@@ -53,6 +53,21 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         }
     }
 
+    disable() {
+        /**
+         * Hides and disables the player, without deletion.
+         * Use enable() to recover state
+         */
+        this.disableBody(true, true);
+    }
+
+    enable() {
+        /**
+         * Enables the player instance.
+         */
+        this.enableBody(false, 0, 0, true, true);
+    }
+
     createAnimations(scene) {
         if (!scene.anims.exists('left')) {
             scene.anims.create({
@@ -80,4 +95,6 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
             });
         }
     }
+
+
 }

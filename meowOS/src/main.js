@@ -1,5 +1,6 @@
 import { Start } from './scenes/Start.js';
 import { DesktopBase } from './scenes/Desktop.js'
+import { Explorer } from './scenes/Explorer.js'
 
 const config = {
     type: Phaser.AUTO,
@@ -19,7 +20,8 @@ const config = {
     pixelArt: false,
     scene: [
         DesktopBase,
-        Start
+        Start,
+        Explorer
     ],
     scale: {
         mode: Phaser.Scale.FIT,

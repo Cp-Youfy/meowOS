@@ -16,7 +16,7 @@ export class Terminal {
         this.showCursor = true;
 
         // Temporary background (to replace with image)
-        this.background = this.scene.add.rectangle(xPos, yPos, 1280, 300, 0x000000, 1).setOrigin(0, 0);
+        this.background = this.scene.add.rectangle(xPos, yPos, scene.canvasSize.width, scene.canvasSize.height * 0.3, 0x000000, 1).setOrigin(0, 0);
         this.scene.physics.add.existing(this.background, 1);
 
         this.text = scene.add.text(xPos + textPad, yPos + textPad, '', {

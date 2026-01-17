@@ -28,13 +28,14 @@ export class Folder extends Phaser.GameObjects.Image {
          * Handle folder opening. Initialises a corresponding Explorer class.
          */
         let keyE = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
-        let currentTime = this.scene.time.now;
 
         // If the folder is already open, don't allow repeated execution
         if (keyE.isDown && !this.isOpen) {
-            console.log("Entry");
             this.isOpen = true;
+            return this.fileObject
         }
+
+        return null
     }
 
     onClose() {
