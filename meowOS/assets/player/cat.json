@@ -10,150 +10,87 @@
 			"scale": 0.25,
 			"frames": [
 				{
-					"filename": "meowassets/jump/jump2.png",
+					"filename": "meowassets/left-walk/walk1.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
 						"w": 512,
-						"h": 307
+						"h": 341
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 512,
-						"h": 307
-					},
-					"frame": {
-						"x": 0,
-						"y": 0,
-						"w": 512,
-						"h": 307
-					}
-				},
-				{
-					"filename": "meowassets/left-leap/leap2.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 512,
-						"h": 307
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 512,
-						"h": 307
-					},
-					"frame": {
-						"x": 512,
-						"y": 0,
-						"w": 512,
-						"h": 307
-					}
-				},
-				{
-					"filename": "meowassets/right-leap/leap2.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 512,
-						"h": 307
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 512,
-						"h": 307
+						"h": 341
 					},
 					"frame": {
 						"x": 1024,
-						"y": 0,
+						"y": 666,
 						"w": 512,
-						"h": 307
+						"h": 341
 					}
 				},
 				{
-					"filename": "meowassets/left-leap/leap4.png",
+					"filename": "meowassets/left-walk/walk2.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
 						"w": 512,
-						"h": 325
+						"h": 349
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 512,
-						"h": 325
+						"h": 349
+					},
+					"frame": {
+						"x": 1024,
+						"y": 1007,
+						"w": 512,
+						"h": 349
+					}
+				},
+				{
+					"filename": "meowassets/right-walk/walk1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 512,
+						"h": 341
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 512,
+						"h": 341
+					},
+					"frame": {
+						"x": 512,
+						"y": 1007,
+						"w": 512,
+						"h": 341
+					}
+				},
+				{
+					"filename": "meowassets/right-walk/walk2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 512,
+						"h": 349
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 512,
+						"h": 349
 					},
 					"frame": {
 						"x": 1536,
-						"y": 0,
+						"y": 1007,
 						"w": 512,
-						"h": 325
-					}
-				},
-				{
-					"filename": "meowassets/right-leap/leap4.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 512,
-						"h": 325
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 512,
-						"h": 325
-					},
-					"frame": {
-						"x": 0,
-						"y": 325,
-						"w": 512,
-						"h": 325
-					}
-				},
-				{
-					"filename": "meowassets/left-leap/leap3.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 512,
-						"h": 333
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 512,
-						"h": 333
-					},
-					"frame": {
-						"x": 512,
-						"y": 325,
-						"w": 512,
-						"h": 333
-					}
-				},
-				{
-					"filename": "meowassets/right-leap/leap3.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 512,
-						"h": 333
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 512,
-						"h": 333
-					},
-					"frame": {
-						"x": 1024,
-						"y": 325,
-						"w": 512,
-						"h": 333
+						"h": 349
 					}
 				},
 				{
@@ -178,6 +115,48 @@
 					}
 				},
 				{
+					"filename": "meowassets/jump/jump2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 512,
+						"h": 307
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 512,
+						"h": 307
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 512,
+						"h": 307
+					}
+				},
+				{
+					"filename": "meowassets/jump/jump3.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 512,
+						"h": 372
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 512,
+						"h": 372
+					},
+					"frame": {
+						"x": 0,
+						"y": 1356,
+						"w": 512,
+						"h": 372
+					}
+				},
+				{
 					"filename": "meowassets/left-leap/leap1.png",
 					"rotated": false,
 					"trimmed": false,
@@ -199,6 +178,90 @@
 					}
 				},
 				{
+					"filename": "meowassets/left-leap/leap2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 512,
+						"h": 307
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 512,
+						"h": 307
+					},
+					"frame": {
+						"x": 512,
+						"y": 0,
+						"w": 512,
+						"h": 307
+					}
+				},
+				{
+					"filename": "meowassets/left-leap/leap3.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 512,
+						"h": 333
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 512,
+						"h": 333
+					},
+					"frame": {
+						"x": 512,
+						"y": 325,
+						"w": 512,
+						"h": 333
+					}
+				},
+				{
+					"filename": "meowassets/left-leap/leap4.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 512,
+						"h": 325
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 512,
+						"h": 325
+					},
+					"frame": {
+						"x": 1536,
+						"y": 0,
+						"w": 512,
+						"h": 325
+					}
+				},
+				{
+					"filename": "meowassets/left-leap/leap5.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 512,
+						"h": 419
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 512,
+						"h": 419
+					},
+					"frame": {
+						"x": 512,
+						"y": 1356,
+						"w": 512,
+						"h": 419
+					}
+				},
+				{
 					"filename": "meowassets/left-leap/leap6.png",
 					"rotated": false,
 					"trimmed": false,
@@ -214,27 +277,6 @@
 					},
 					"frame": {
 						"x": 512,
-						"y": 666,
-						"w": 512,
-						"h": 341
-					}
-				},
-				{
-					"filename": "meowassets/left-walk/walk1.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 512,
-						"h": 341
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 512,
-						"h": 341
-					},
-					"frame": {
-						"x": 1024,
 						"y": 666,
 						"w": 512,
 						"h": 341
@@ -262,129 +304,66 @@
 					}
 				},
 				{
-					"filename": "meowassets/right-leap/leap6.png",
+					"filename": "meowassets/right-leap/leap2.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
 						"w": 512,
-						"h": 341
+						"h": 307
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 512,
-						"h": 341
-					},
-					"frame": {
-						"x": 0,
-						"y": 1007,
-						"w": 512,
-						"h": 341
-					}
-				},
-				{
-					"filename": "meowassets/right-walk/walk1.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 512,
-						"h": 341
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 512,
-						"h": 341
-					},
-					"frame": {
-						"x": 512,
-						"y": 1007,
-						"w": 512,
-						"h": 341
-					}
-				},
-				{
-					"filename": "meowassets/left-walk/walk2.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 512,
-						"h": 349
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 512,
-						"h": 349
+						"h": 307
 					},
 					"frame": {
 						"x": 1024,
-						"y": 1007,
+						"y": 0,
 						"w": 512,
-						"h": 349
+						"h": 307
 					}
 				},
 				{
-					"filename": "meowassets/right-walk/walk2.png",
+					"filename": "meowassets/right-leap/leap3.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
 						"w": 512,
-						"h": 349
+						"h": 333
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 512,
-						"h": 349
+						"h": 333
 					},
 					"frame": {
-						"x": 1536,
-						"y": 1007,
+						"x": 1024,
+						"y": 325,
 						"w": 512,
-						"h": 349
+						"h": 333
 					}
 				},
 				{
-					"filename": "meowassets/jump/jump3.png",
+					"filename": "meowassets/right-leap/leap4.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
 						"w": 512,
-						"h": 372
+						"h": 325
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 512,
-						"h": 372
+						"h": 325
 					},
 					"frame": {
 						"x": 0,
-						"y": 1356,
+						"y": 325,
 						"w": 512,
-						"h": 372
-					}
-				},
-				{
-					"filename": "meowassets/left-leap/leap5.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 512,
-						"h": 419
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 512,
-						"h": 419
-					},
-					"frame": {
-						"x": 512,
-						"y": 1356,
-						"w": 512,
-						"h": 419
+						"h": 325
 					}
 				},
 				{
@@ -406,6 +385,27 @@
 						"y": 1356,
 						"w": 512,
 						"h": 419
+					}
+				},
+				{
+					"filename": "meowassets/right-leap/leap6.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 512,
+						"h": 341
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 512,
+						"h": 341
+					},
+					"frame": {
+						"x": 0,
+						"y": 1007,
+						"w": 512,
+						"h": 341
 					}
 				}
 			]

@@ -1,0 +1,7 @@
+This txt file lists the indexes of the animations for easier reference.
+0: Default
+[0, 1] Left walk
+[2, 3] Right walk
+[3, 4, 5] Jump
+[6, 7, 8, 9, 10, 11] Left leap
+[12, 13, 14, 15, 16, 17] Right leap

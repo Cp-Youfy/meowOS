@@ -11,10 +11,7 @@ export class DesktopBase extends Phaser.Scene {
 
     preload() {
         this.load.image('background', 'assets/backgrounds/desktop.png');
-        this.load.spritesheet('player', 'assets/player/dude.png', {
-            frameWidth: 32,
-            frameHeight: 48
-        })
+        this.load.atlas('player', 'assets/player/cat.png', 'assets/player/cat.json')
         this.load.image('folder', 'assets/icons/folder.png');
     }
 
@@ -34,7 +31,7 @@ export class DesktopBase extends Phaser.Scene {
 
         // Define collisions
         this.physics.add.collider(player, this.folders, this.handleInteractiveCollision, null, this); // the two colliding objects are passed as params into the callback function
-        this.physics.add.collider(player, terminal.background);
+        this.physics.add.collider(player, terminal.background, this.setCollidingVelocity, null, this);
 
         // Scene-wide variables
         this.player = player;
@@ -82,6 +79,7 @@ export class DesktopBase extends Phaser.Scene {
          * I am not chatgpt :(
          */
         if (player.body.touching.down && interactiveObj.body.touching.up) {
+            this.setCollidingVelocity()
             interactiveObj.isColliding = true;
             let folderData = interactiveObj.execute()
             if (folderData !== null) {
@@ -106,5 +104,15 @@ export class DesktopBase extends Phaser.Scene {
             'folderData': folderData,
             'size': this.tabSize
         });
+    }
+
+    // Tunneling protection
+    setCollidingVelocity() {
+        console.log(this.player.hasLanded)
+        if (!this.player.hasLanded) {
+            this.player.setVelocityY(-20);
+            this.player.setY(this.player.y - 10)
+            this.player.hasLanded = true
+        }
     }
 }
