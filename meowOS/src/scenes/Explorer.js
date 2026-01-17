@@ -1,5 +1,6 @@
 import { Player } from '../classes/Player.js';
 import { Folder } from '../classes/Folder.js';
+import { ExplorerBar } from '../classes/ExplorerBar.js'
 import { getRandomCoords } from '../methods/randomMethods.js';
 
 export class Explorer extends Phaser.Scene {
@@ -23,6 +24,7 @@ export class Explorer extends Phaser.Scene {
 
     preload() {
         this.load.image('explorer-bg', 'assets/backgrounds/explorer.png');
+        this.load.image('explorer-bar', 'assets/backgrounds/explorer-bar.png');
     }
 
     create() {
@@ -37,13 +39,16 @@ export class Explorer extends Phaser.Scene {
 
         // Initialise external objects
         let player = new Player(this, this.x, this.y, scaleFactor).setOrigin(0, 0);
+        let navbar = new ExplorerBar(this);
         this.loadFolders();
 
         // Scene-wide variables
         this.player = player;
+        this.navbar = navbar
 
         // Collisions
         this.physics.add.collider(player, this.folders, this.handleInteractiveCollision, null, this);
+        this.physics.add.collider(player, this.navbar);
     }
 
     update() {
