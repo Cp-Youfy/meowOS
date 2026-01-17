@@ -108,9 +108,8 @@ export class DesktopBase extends Phaser.Scene {
 
     // Tunneling protection
     setCollidingVelocity() {
-        console.log(this.player.hasLanded)
         if (!this.player.hasLanded) {
-            this.player.setVelocityY(-20);
+            this.player.setVelocityY(-40);
             this.player.setY(this.player.y - 10)
             this.player.hasLanded = true
         }

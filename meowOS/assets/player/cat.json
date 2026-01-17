@@ -388,6 +388,27 @@
 					}
 				},
 				{
+					"filename": "meowassets/right-leap/leap6.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 512,
+						"h": 341
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 512,
+						"h": 341
+					},
+					"frame": {
+						"x": 0,
+						"y": 1007,
+						"w": 512,
+						"h": 341
+					}
+				},
+				{
 					"filename": "meowassets/default/front.png",
 					"rotated": false,
 					"trimmed": false,

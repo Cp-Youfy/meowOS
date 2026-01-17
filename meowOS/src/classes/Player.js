@@ -30,7 +30,9 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         this.scene = scene
         this.isJumping = false;
         this.hasLanded = true; // for preventing tunneling with terminal
+        this.facing = 'left'; // current direction
         this.cursors = scene.input.keyboard.createCursorKeys();
+
     }
 
     handleInput() {
@@ -47,25 +49,27 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         // Check for inputs
         // Walking
         if (this.cursors.left.isDown || keyA.isDown) {
+            this.facing = 'left';
             this.setVelocityX(-160);
             if (!this.isJumping) {
                 this.anims.play('left-walk', true);
             } else {
                 // Initial jump
                 if (this.body.velocity.y < -200) {
-                    this.anims.play('left-spring-up', true)
+                    this.anims.play('left-spring-up', true);
                     // Falling
                 } else if (this.body.velocity.y > 0) {
-                    this.anims.play('left-spring-down', true)
+                    this.anims.play('left-spring-down', true);
                     this.hasFallen = true;
                 } else {
                     // Midjump
-                    this.anims.play('left-air-leap', true)
+                    this.anims.play('left-air-leap', true);
                 }
             }
 
         }
         else if (this.cursors.right.isDown || keyD.isDown) {
+            this.facing = 'right'
             this.setVelocityX(160);
             if (!this.isJumping) {
                 this.anims.play('right-walk', true);
@@ -87,15 +91,20 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         else {
             this.setVelocityX(0);
             if (this.body.touching.down) {
+                console.log(this.facing)
                 // Stationary the ground
-                this.anims.play('default');
+                if (this.facing === 'left') {
+                    this.anims.play('default-left');
+                } else {
+                    this.anims.play('default-right');
+                }
             }
-
         }
 
         // Only allow jumps when the player is touching a platform
         if ((this.cursors.up.isDown || keyW.isDown) && this.body.touching.down) {
             this.setVelocityY(-300);
+            this.anims.play('jump', true);
             this.hasLanded = false;
             this.isJumping = true;
         }
@@ -118,12 +127,21 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
 
     createAnimations(scene) {
         // Default
-        if (!scene.anims.exists('default')) {
-            // TO REPLACE: Static
+        if (!scene.anims.exists('default-left')) {
             scene.anims.create({
-                key: 'default',
+                key: 'default-left',
                 frames: [
                     { key: 'player', frame: 'meowassets/left-walk/walk1.png' },
+                ],
+                frameRate: 20
+            });
+        }
+
+        if (!scene.anims.exists('default-right')) {
+            scene.anims.create({
+                key: 'default-right',
+                frames: [
+                    { key: 'player', frame: 'meowassets/right-walk/walk1.png' },
                 ],
                 frameRate: 20
             });
@@ -181,6 +199,18 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
                     { key: 'player', frame: 'meowassets/right-leap/leap4.png' },
                     { key: 'player', frame: 'meowassets/right-leap/leap5.png' },
                     { key: 'player', frame: 'meowassets/right-leap/leap6.png' },
+                ],
+                frameRate: 10,
+                repeat: -1
+            });
+        }
+
+        // Jumping
+        if (!scene.anims.exists('jump')) {
+            scene.anims.create({
+                key: 'jump',
+                frames: [
+                    { key: 'player', frame: 'meowassets/jump/jump2.png' },
                 ],
                 frameRate: 10,
                 repeat: -1
