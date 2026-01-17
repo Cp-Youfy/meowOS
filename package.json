@@ -1,0 +1,14 @@
+{
+  "name": "meowos",
+  "version": "1.0.0",
+  "description": "A Phaser-based game",
+  "main": "meowOS/src/main.js",
+  "scripts": {
+    "start": "npx http-server meowOS -p 8000 -o",
+    "dev": "npx http-server meowOS -p 8000",
+    "serve": "npx live-server meowOS"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
