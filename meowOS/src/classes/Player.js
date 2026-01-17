@@ -42,7 +42,10 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         let keyD = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
         let keyW = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
         // Check for jumping
-        if (this.body.touching.down) {
+        let isTouchingGround = (this.body.touching.down ||
+            this.body.bottom >= this.scene.physics.world.bounds.bottom);
+
+        if (isTouchingGround) {
             this.isJumping = false;
         }
 
@@ -90,8 +93,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         }
         else {
             this.setVelocityX(0);
-            if (this.body.touching.down) {
-                console.log(this.facing)
+            if (isTouchingGround) {
                 // Stationary the ground
                 if (this.facing === 'left') {
                     this.anims.play('default-left');
@@ -102,7 +104,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         }
 
         // Only allow jumps when the player is touching a platform
-        if ((this.cursors.up.isDown || keyW.isDown) && this.body.touching.down) {
+        if ((this.cursors.up.isDown || keyW.isDown) && isTouchingGround) {
             this.setVelocityY(-300);
             this.anims.play('jump', true);
             this.hasLanded = false;

@@ -1,7 +1,7 @@
-import { Player } from '../classes/Player.js'
-import { Terminal } from '../classes/Terminal.js'
-import { Folder } from '../classes/Folder.js'
-import { getRandomCoords } from '../methods/randomMethods.js'
+import { Player } from '../classes/Player.js';
+import { Terminal } from '../classes/Terminal.js';
+import { Folder } from '../classes/Folder.js';
+import { getRandomCoords } from '../methods/randomMethods.js';
 
 export class DesktopBase extends Phaser.Scene {
 
@@ -10,7 +10,7 @@ export class DesktopBase extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('background', 'assets/backgrounds/desktop.png');
+        this.load.image('desktop-bg', 'assets/backgrounds/desktop.png');
         this.load.atlas('player', 'assets/player/cat.png', 'assets/player/cat.json')
         this.load.image('folder', 'assets/icons/folder.png');
     }
@@ -22,7 +22,9 @@ export class DesktopBase extends Phaser.Scene {
             'height': 720
         }
 
-        this.background = this.add.tileSprite(640, 360, this.canvasSize.width, this.canvasSize.height, 'background');
+        this.physics.world.setBounds(0, 0, this.canvasSize.width, this.canvasSize.height);
+
+        this.background = this.add.tileSprite(640, 360, this.canvasSize.width, this.canvasSize.height, 'desktop-bg');
 
         // Initialise external objects
         let terminal = new Terminal(this); // Height set to 0.3 * canvasHeight
@@ -35,6 +37,7 @@ export class DesktopBase extends Phaser.Scene {
 
         // Scene-wide variables
         this.player = player;
+        this.terminal = terminal;
 
         // Tab params (e.g. for explorer instances)
         this.spawnTop = 33;
@@ -45,12 +48,13 @@ export class DesktopBase extends Phaser.Scene {
         }
 
         // Welcome message
-        terminal.write("Welcome to meowOS!");
+        this.terminal.write("Welcome to meowOS!");
     }
 
     update() {
         // Update prepares the canvas for the next frame each time
         this.player.handleInput()
+        this.checkIllegalPlayerPos()
 
         // Reset the state of touched folders for the next frame
         this.folders.children.entries.forEach(folder => {
@@ -99,6 +103,8 @@ export class DesktopBase extends Phaser.Scene {
         this.player.disable();
 
         // Launch explorer
+        this.terminal.write("\n- Spawned new Explorer instance for directory " + folderData.name)
+
         this.scene.launch('Explorer', {
             'posData': explorerCoords,
             'folderData': folderData,
@@ -112,6 +118,15 @@ export class DesktopBase extends Phaser.Scene {
             this.player.setVelocityY(-40);
             this.player.setY(this.player.y - 10)
             this.player.hasLanded = true
+        }
+    }
+
+    checkIllegalPlayerPos() {
+        /**
+         * Additional tunneling guard that relocates the player above the terminal if it is below the allowed y-boundary
+         */
+        if (this.player.y > this.spawnBottom) {
+            this.player.y = this.spawnBottom
         }
     }
 }
