@@ -122,14 +122,12 @@ export class Explorer extends Phaser.Scene {
 
     sceneTransitionExplorer(folderData, interactiveObj) {
         // Generate necessary context for Explorer scene
-        let explorerCoords = getRandomCoords(0, this.scene.get('DesktopBase').canvasSize.width, this.scene.get('DesktopBase').spawnTop, this.scene.get('DesktopBase').spawnBottom, this.tabSize);
+        let explorerCoords = getRandomCoords(0, this.scene.get('DesktopBase').canvasSize.width, this.scene.get('DesktopBase').spawnTop, this.scene.get('DesktopBase').spawnBottom, this.size);
 
-        // Clean up necessary sprites on Desktop (Don't pause DesktopBase so that the terminal keeps running)
+        // Disable the player on this current Explorer instance
         this.player.disable();
 
-        // Launch explorer
-        this.terminal.write("\n- Spawned new Explorer instance for directory " + folderData.name)
-
+        // Launch another Explorer window
         this.scene.launch('Explorer', {
             'posData': explorerCoords,
             'folderData': folderData,
