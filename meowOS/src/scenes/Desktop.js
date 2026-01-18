@@ -2,6 +2,8 @@ import { Player } from '../classes/Player.js';
 import { Terminal } from '../classes/Terminal.js';
 import { Folder } from '../classes/Folder.js';
 import { getRandomCoords } from '../methods/randomMethods.js';
+import { Bomb } from '../classes/Bomb.js';
+
 
 export class DesktopBase extends Phaser.Scene {
 
@@ -18,6 +20,8 @@ export class DesktopBase extends Phaser.Scene {
         this.load.image('fGoop', 'assets/folders/2.png');
         this.load.image('fKira', 'assets/folders/3.png');
         this.load.image('fSpikes', 'assets/folders/4.png');
+
+        this.load.image('bomb', 'assets/icons/bomb.png');
     }
 
     create() {
@@ -42,9 +46,11 @@ export class DesktopBase extends Phaser.Scene {
         let terminal = new Terminal(this); // Height set to 0.3 * canvasHeight
         let player = new Player(this, 200, 300, scaleFactor);
         this.loadFolders()
+        this.loadBomb()
 
         // Define collisions
         this.physics.add.collider(player, this.folders, this.handleInteractiveCollision, null, this); // the two colliding objects are passed as params into the callback function
+        this.physics.add.collider(player, this.bomb, this.handleBombCollision, null, this);
         this.physics.add.collider(player, terminal.background, this.setCollidingVelocity, null, this);
 
         // Scene-wide variables
@@ -72,6 +78,8 @@ export class DesktopBase extends Phaser.Scene {
         this.folders.children.entries.forEach(folder => {
             folder.isTouched = false;
         });
+
+        this.bomb.isColliding = false;
     }
 
     loadFolders() {
@@ -86,6 +94,15 @@ export class DesktopBase extends Phaser.Scene {
 
         let folder2 = new Folder(this, 500, 300, "2", this.folderScale);
         this.folders.add(folder2);
+    }
+
+    loadBomb() {
+        /**
+         * Load bomb icon onto desktop
+         */
+        this.bomb = this.physics.add.staticGroup();
+        let bomb = new Bomb(this, 300, 400, this.folderScale);
+        this.bomb.add(bomb);
     }
 
     handleInteractiveCollision(player, interactiveObj) {
@@ -105,6 +122,21 @@ export class DesktopBase extends Phaser.Scene {
                 this.sceneTransitionExplorer(folderData, interactiveObj)
             }
             // If null, there was no execution done.
+        }
+    }
+
+    handleBombCollision(player, bomb) {
+        /**
+         * Handle collision with bomb icon and transition to BombApp scene.
+         */
+        if (player.body.touching.down && bomb.body.touching.up) {
+            this.setCollidingVelocity();
+            bomb.isColliding = true;
+            let bombData = bomb.execute();
+            
+            if (bombData !== null) {
+                this.scene.start('bombApp');
+            }
         }
     }
 

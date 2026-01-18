@@ -1,5 +1,6 @@
 import { Start } from './scenes/Start.js';
 import { DesktopBase } from './scenes/Desktop.js'
+import { BombApp } from './scenes/BombApp.js'
 import { Explorer } from './scenes/Explorer.js'
 
 const config = {
@@ -22,7 +23,8 @@ const config = {
     scene: [
         DesktopBase,
         Start,
-        Explorer
+        Explorer,
+        BombApp
     ],
     scale: {
         mode: Phaser.Scale.FIT,
