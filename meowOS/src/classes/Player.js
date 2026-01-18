@@ -8,7 +8,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
 
     constructor(scene, x, y, scaleFactor) {
         // Setup the sprite in the scene
-        super(scene, x, y, 'player', 0);
+        super(scene, x, y, 'player');
 
         scene.add.existing(this);
         scene.physics.add.existing(this);
@@ -25,7 +25,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         this.scene = scene;
         this.isJumping = false;
         this.hasLanded = true; // for preventing tunneling with terminal
-        this.facing = 'left'; // current direction
+        this.facing = 'right'; // current direction
         this.cursors = scene.input.keyboard.createCursorKeys();
 
     }

@@ -4,8 +4,8 @@ import fileData from '../data/files.json' with { type: 'json' }
 export class Folder extends Phaser.GameObjects.Image {
     /***
      * Defines Folder class, with public methods to spawn linked Explorer instances.
-     * @param {number} x Starting x-coordinate of folder (from center of sprite)
-     * @param {number} y Starting y-coordinate of folder (from center of sprite)
+     * @param {number} x Starting x-coordinate of folder
+     * @param {number} y Starting y-coordinate of folder
      * @param {string} id ID as retrieved from the json file
      */
 
@@ -16,7 +16,7 @@ export class Folder extends Phaser.GameObjects.Image {
         ]
         let randomSprite = Phaser.Utils.Array.GetRandom(folderSprites);
 
-        super(scene, x, y, randomSprite);
+        super(scene, x, y, randomSprite).setOrigin(0, 0);
         scene.add.existing(this);
 
         this.setScale(scaleFactor);
@@ -32,6 +32,9 @@ export class Folder extends Phaser.GameObjects.Image {
             'width': this.displayWidth,
             'height': this.displayHeight
         }
+
+        // Add filename label
+        this.renderFileName();
     }
 
     findFileById(data, id) {
@@ -67,6 +70,26 @@ export class Folder extends Phaser.GameObjects.Image {
         return null;
     }
 
+    renderFileName() {
+        /**
+         * Renders Text object below the file name
+         */
+
+        if (this.fileNameLabel) {
+            this.fileNameLabel.destroy();
+        }
+
+        let fileName = this.fileObject.name;
+        this.fileNameLabel = this.scene.add.text(this.x + (this.size.width / 2), this.y + this.size.height + 3, fileName, {
+            fontFamily: 'sans-serif',
+            fontSize: '16px',
+            // strokeThickness: 2,
+            // stroke: '#000000',
+            color: '#000000',
+            wordWrap: { width: 780 }
+        }).setOrigin(0.5, 0);
+    }
+
     execute() {
         /**
          * Handle folder opening. Initialises a corresponding Explorer class.
@@ -85,6 +108,9 @@ export class Folder extends Phaser.GameObjects.Image {
     updatePos(x, y) {
         this.x = x
         this.y = y
+
+        // Shift file name labels
+        this.renderFileName()
     }
 
     onClose() {

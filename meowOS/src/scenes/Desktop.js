@@ -44,7 +44,7 @@ export class DesktopBase extends Phaser.Scene {
 
         // Initialise external objects
         let terminal = new Terminal(this); // Height set to 0.3 * canvasHeight
-        let player = new Player(this, 200, 300, scaleFactor);
+        let player = new Player(this, 0, 300, scaleFactor);
         this.loadFolders()
         this.loadBomb()
 
@@ -89,7 +89,7 @@ export class DesktopBase extends Phaser.Scene {
 
         this.folders = this.physics.add.staticGroup();
 
-        let folder1 = new Folder(this, 200, 400, "1", this.folderScale);
+        let folder1 = new Folder(this, 150, 350, "1", this.folderScale);
         this.folders.add(folder1);
 
         let folder2 = new Folder(this, 500, 300, "2", this.folderScale);
@@ -133,7 +133,7 @@ export class DesktopBase extends Phaser.Scene {
             this.setCollidingVelocity();
             bomb.isColliding = true;
             let bombData = bomb.execute();
-            
+
             if (bombData !== null) {
                 this.scene.start('bombApp');
             }
