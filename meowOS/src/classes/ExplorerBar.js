@@ -14,10 +14,19 @@ export class ExplorerBar {
 
         // Initialise visible StaticBody object
         this.background = this.scene.add.image(xPos, yPos, 'explorer-bar').setOrigin(0, 0);
-        //this.background.setDisplaySize(scene.size.width, scene.navbarHeight);
+        this.background.setDisplaySize(scene.size.width, scene.navbarHeight);
         this.scene.physics.add.existing(this.background, 1);
 
+        // Initialise transparent collision overlay for the close button (50x30)
+        this.exitOverlay = this.scene.add.rectangle(xPos + (scene.size.width - 50), yPos - 1, 50, 31, 0xffffff, 0).setOrigin(0, 0);
+        this.scene.physics.add.existing(this.exitOverlay, 1)
     }
 
-
+    destroy() {
+        /**
+         * Clean up the explorer bar
+         */
+        this.background.destroy()
+        this.exitOverlay.destroy()
+    }
 }

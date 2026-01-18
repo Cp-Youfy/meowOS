@@ -18,6 +18,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         this.setBounce(0);
         this.setCollideWorldBounds(true);
         this.body.setMaxVelocity(400, 600); // max x, y velocities...Hopefully stops tunneling through the terminal!
+        this.isActive = true;
 
         this.createAnimations(scene);
 
@@ -30,6 +31,9 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     handleInput() {
+        // Ignore input if not active
+        if (!this.isActive) return;
+
         // Handle WASD
         let keyA = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
         let keyS = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
@@ -111,14 +115,17 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
          * Hides and disables the player, without deletion.
          * Use enable() to recover state
          */
-        this.disableBody(true, true);
+        this.isActive = false;
+        this.setVisible(false);
+        this.setVelocity(0, 0)
     }
 
     enable() {
         /**
          * Enables the player instance.
          */
-        this.enableBody(false, 0, 0, true, true);
+        this.isActive = true;
+        this.setVisible(true);
     }
 
     createAnimations(scene) {

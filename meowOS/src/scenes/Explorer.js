@@ -44,11 +44,13 @@ export class Explorer extends Phaser.Scene {
 
         // Scene-wide variables
         this.player = player;
-        this.navbar = navbar
+        this.navbar = navbar;
+        this.isClosing = false;
 
         // Collisions
-        this.physics.add.collider(player, this.folders, this.handleInteractiveCollision, null, this);
-        this.physics.add.collider(player, this.navbar);
+        this.physics.add.collider(this.player, this.folders, this.handleInteractiveCollision, null, this);
+        this.physics.add.collider(this.player, this.navbar.background);
+        this.physics.add.overlap(this.player, this.navbar.exitOverlay, this.close, null, this)
     }
 
     update() {
@@ -75,13 +77,14 @@ export class Explorer extends Phaser.Scene {
          * Generates a folder in a random location and stores its location in a set
          */
 
-        let maxY = this.y + this.size.height - this.navbarHeight - 40; // 40 is arbitrary padding
-        let maxX = this.x + this.size.width;
+        let verticalPadding = 35;
+        let maxY = this.y + this.size.height - this.navbarHeight;
+        let maxX = this.x + this.size.width - 90; // ensure accessibility of exit
 
         // Generate dummy folder first to retrieve the dimensions
         let folder = new Folder(this, 0, 0, folderObj.id, this.folderScale).setOrigin(0, 0);
 
-        let folderCoords = getRandomCoords(this.x, maxX, this.y, maxY, folder.size);
+        let folderCoords = getRandomCoords(this.x, maxX, this.y + verticalPadding, maxY, folder.size); // Don't want it spawning too high either...
 
         folder.updatePos(folderCoords.x, folderCoords.y);
 
@@ -119,6 +122,18 @@ export class Explorer extends Phaser.Scene {
         /**
          * Close the explorer instance
          */
-        this.scene.stop('Explorer');
+        if (!this.isClosing) {
+            this.isClosing = true;
+
+            this.player.destroy();
+            this.background.destroy();
+            this.navbar.destroy();
+            this.folders.clear(true, true)
+            this.folderPosArr = [];
+
+            // Transition scene
+            this.scene.get('DesktopBase').player.enable();
+            this.scene.stop();
+        }
     }
 }

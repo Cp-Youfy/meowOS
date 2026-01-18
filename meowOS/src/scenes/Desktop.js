@@ -136,7 +136,7 @@ export class DesktopBase extends Phaser.Scene {
          * Additional tunneling guard that relocates the player above the terminal if it is below the allowed y-boundary
          */
         if (this.player.y > this.spawnBottom) {
-            this.player.y = this.spawnBottom
+            this.player.y = this.spawnBottom + 30
         }
     }
 }
