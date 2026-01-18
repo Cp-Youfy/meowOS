@@ -27,6 +27,9 @@ export class DesktopBase extends Phaser.Scene {
             'height': 720
         }
 
+        // Global Data Manager
+        this.registry.set('explorerStack', []) // Used to track parent explorers
+
         // Factor to scale player by
         let scaleFactor = 0.2
         this.folderScale = 0.15
@@ -111,6 +114,11 @@ export class DesktopBase extends Phaser.Scene {
 
         // Clean up necessary sprites on Desktop (Don't pause DesktopBase so that the terminal keeps running)
         this.player.disable();
+
+        // Add base (null) to stack to identify DesktopBase caller
+        let explorerStack = this.registry.get('explorerStack');
+        explorerStack.push(null)
+        this.registry.set('explorerStack', explorerStack)
 
         // Launch explorer
         this.terminal.write("\n- Spawned new Explorer instance for directory " + folderData.name)

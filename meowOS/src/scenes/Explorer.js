@@ -16,11 +16,12 @@ export class Explorer extends Phaser.Scene {
 
     init(context) {
         // Retrieve context
+        this.context = context;
         this.x = context.posData.x;
         this.y = context.posData.y;
         this.folderData = context.folderData;
         this.size = context.size;
-        this.folderObjOrig = context.folderObj;
+        this.folderObj = context.folderObj;
     }
 
     preload() {
@@ -112,6 +113,7 @@ export class Explorer extends Phaser.Scene {
             interactiveObj.isColliding = true;
             let folderData = interactiveObj.execute()
             if (folderData !== null) {
+                console.log(folderData)
                 // Executed
                 // Don't pause DesktopBase so that the terminal keeps running
                 this.sceneTransitionExplorer(folderData, interactiveObj)
@@ -124,15 +126,16 @@ export class Explorer extends Phaser.Scene {
         // Generate necessary context for Explorer scene
         let explorerCoords = getRandomCoords(0, this.scene.get('DesktopBase').canvasSize.width, this.scene.get('DesktopBase').spawnTop, this.scene.get('DesktopBase').spawnBottom, this.size);
 
-        // Disable the player on this current Explorer instance
-        this.player.disable();
+        // Add current object to stack to identify parent caller
+        let explorerStack = this.registry.get('explorerStack');
+        explorerStack.push(this.context)
+        this.registry.set('explorerStack', explorerStack)
 
-        // Launch another Explorer window
-        this.scene.launch('Explorer', {
+        this.scene.restart({
             'posData': explorerCoords,
             'folderData': folderData,
-            'size': this.tabSize,
-            'folderObj': interactiveObj // So we can reset folder state when the Explorer is closed
+            'size': this.size,
+            'folderObj': interactiveObj, // So we can reset folder state when the Explorer is closed
         });
     }
 
@@ -142,17 +145,25 @@ export class Explorer extends Phaser.Scene {
          */
         if (!this.isClosing) {
             this.isClosing = true;
-
             this.player.destroy();
             this.background.destroy();
             this.navbar.destroy();
             this.folders.clear(true, true)
             this.folderPosArr = [];
-            this.folderObjOrig.isOpen = false;
+            this.folderObj.isOpen = false;
 
-            // Transition scene
-            this.scene.get('DesktopBase').player.enable();
-            this.scene.stop();
+            // Recover parent
+            let explorerStack = this.registry.get('explorerStack');
+            let parentContext = explorerStack.pop(this.folderObj)
+            this.registry.set('explorerStack', explorerStack)
+
+            if (parentContext === null) {
+                // Recover desktop
+                this.scene.get('DesktopBase').player.enable();
+                this.scene.stop();
+            } else {
+                this.scene.restart(parentContext);
+            }
         }
     }
 }

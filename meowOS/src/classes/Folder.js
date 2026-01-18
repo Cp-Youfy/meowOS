@@ -23,13 +23,48 @@ export class Folder extends Phaser.GameObjects.Image {
 
         // Class properties
         this.scene = scene;
-        this.fileObject = fileData.find(item => item.id === id);
+        this.fileObject = this.findFileById(fileData, id);
+
+        this.id = id
         this.cursors = scene.input.keyboard.createCursorKeys();
         this.isOpen = false;
         this.size = {
             'width': this.displayWidth,
             'height': this.displayHeight
         }
+    }
+
+    findFileById(data, id) {
+        /**
+         * gpt generated
+         * Recursively search for a file/folder by id in nested children
+         * @param {Array|Object} data - The data to search (can be array or single object)
+         * @param {string} id - The id to find
+         * @returns {Object|null} - The found object or null
+         */
+
+        // If data is an array, search each item
+        if (Array.isArray(data)) {
+            for (let item of data) {
+                const result = this.findFileById(item, id);
+                if (result) return result;
+            }
+            return null;
+        }
+
+        // If data is an object, check if it matches
+        if (data && typeof data === 'object') {
+            if (data.id === id) {
+                return data;
+            }
+
+            // Search in children if they exist
+            if (data.children && Array.isArray(data.children)) {
+                return this.findFileById(data.children, id);
+            }
+        }
+
+        return null;
     }
 
     execute() {

@@ -8,7 +8,20 @@
                 "id": "1-1",
                 "type": "folder",
                 "name": "sample_folder_3",
-                "children": []
+                "children": [
+                    {
+                        "id": "1-1-1",
+                        "type": "folder",
+                        "name": "sample_folder_5",
+                        "children": []
+                    },
+                    {
+                        "id": "1-1-2",
+                        "type": "folder",
+                        "name": "sample_folder_6",
+                        "children": []
+                    }
+                ]
             },
             {
                 "id": "1-2",
