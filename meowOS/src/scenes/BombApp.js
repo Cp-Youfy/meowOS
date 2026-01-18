@@ -17,7 +17,7 @@ export class BombApp extends Phaser.Scene {
                 fill: '#ff0000',
                 align: 'center'
             }
-        ).setOrigin(0.5);
+        )
 
     }
 }
