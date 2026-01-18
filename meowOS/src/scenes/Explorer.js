@@ -50,16 +50,17 @@ export class Explorer extends Phaser.Scene {
         // Collisions
         this.physics.add.collider(this.player, this.folders, this.handleInteractiveCollision, null, this);
         this.physics.add.collider(this.player, this.navbar.background);
-        this.physics.add.overlap(this.player, this.navbar.exitOverlay, this.close, null, this)
+        this.physics.add.overlap(this.player, this.navbar.exitOverlay, this.close, null, this);
     }
 
     update() {
-        this.player.handleInput()
+        if (!this.isClosing) {
+            this.player.handleInput()
+        }
     }
 
     loadFolders() {
         /**
-         * TODO
          * Generates all relevant children folders and randomly positions them.
          * 1. No overlap between folders.
          * 2. Reserve a certain padding at the bottom so that it is always possible to close the explorer.
@@ -132,6 +133,7 @@ export class Explorer extends Phaser.Scene {
             this.folderPosArr = [];
 
             // Transition scene
+            console.log(this)
             this.scene.get('DesktopBase').player.enable();
             this.scene.stop();
         }
