@@ -1,6 +1,7 @@
 import { Player } from '../classes/Player.js';
 import { Terminal } from '../classes/Terminal.js';
 import { Folder } from '../classes/Folder.js';
+import { Antivirus } from '../classes/Antivirus.js'
 import { getRandomCoords } from '../methods/randomMethods.js';
 import { Bomb } from '../classes/Bomb.js';
 
@@ -35,6 +36,14 @@ export class DesktopBase extends Phaser.Scene {
         this.registry.set('explorerStack', []) // Used to track parent explorers
         this.registry.set('processes', [])
 
+        // Tab params (e.g. for explorer instances)
+        this.spawnTop = 33;
+        this.spawnBottom = 0.7 * this.canvasSize.height;
+        this.tabSize = {
+            'width': 500,
+            'height': 300
+        }
+
         // Factor to scale player by
         let scaleFactor = 0.2
         this.folderScale = 0.15
@@ -46,8 +55,9 @@ export class DesktopBase extends Phaser.Scene {
         // Initialise external objects
         let terminal = new Terminal(this); // Height set to 0.3 * canvasHeight
         let player = new Player(this, 0, 300, scaleFactor);
-        this.loadFolders()
-        this.loadBomb()
+        let antivirus = new Antivirus(this);
+        this.loadFolders();
+        this.loadBomb();
 
         // Define collisions
         this.physics.add.collider(player, this.folders, this.handleInteractiveCollision, null, this); // the two colliding objects are passed as params into the callback function
@@ -57,14 +67,15 @@ export class DesktopBase extends Phaser.Scene {
         // Scene-wide variables
         this.player = player;
         this.terminal = terminal;
+        this.antivirus = antivirus;
 
-        // Tab params (e.g. for explorer instances)
-        this.spawnTop = 33;
-        this.spawnBottom = 0.7 * this.canvasSize.height;
-        this.tabSize = {
-            'width': 500,
-            'height': 300
-        }
+        // Background events
+        this.time.addEvent({ // ad event
+            delay: 20 * 1000,
+            loop: true,
+            callback: this.antivirus.initAd,
+            callbackScope: this.antivirus
+        });
 
         // Welcome message
         this.terminal.write("Welcome to meowOS!");
@@ -74,6 +85,15 @@ export class DesktopBase extends Phaser.Scene {
         // Update prepares the canvas for the next frame each time
         this.player.handleInput()
         this.checkIllegalPlayerPos()
+
+        // Check if player is still overlapping with ad
+        if (this.antivirus.adBackground && this.antivirus.isOverlapping) {
+            const overlap = this.physics.overlap(this.player, this.antivirus.adBackground);
+            if (!overlap) {
+                // Player stopped overlapping, cancel timer
+                this.antivirus.stopCloseTimer();
+            }
+        }
 
         // Reset the state of touched folders for the next frame
         this.folders.children.entries.forEach(folder => {
@@ -109,6 +129,19 @@ export class DesktopBase extends Phaser.Scene {
         this.bomb.add(bomb);
     }
 
+    handleBombCollision(player, bomb) {
+        /**
+         * Handle collision with bomb icon and transition to BombApp scene.
+         */
+        this.setCollidingVelocity();
+        bomb.isColliding = true;
+        let bombData = bomb.execute();
+
+        if (bombData !== null) {
+            this.scene.start('bombApp');
+        }
+    }
+
     handleInteractiveCollision(player, interactiveObj) {
         /**
          * Sets collision status for interactiveObj execution.
@@ -126,19 +159,6 @@ export class DesktopBase extends Phaser.Scene {
                 this.sceneTransitionExplorer(folderData, interactiveObj)
             }
             // If null, there was no execution done.
-        }
-    }
-
-    handleBombCollision(player, bomb) {
-        /**
-         * Handle collision with bomb icon and transition to BombApp scene.
-         */
-        this.setCollidingVelocity();
-        bomb.isColliding = true;
-        let bombData = bomb.execute();
-
-        if (bombData !== null) {
-            this.scene.start('bombApp');
         }
     }
 
