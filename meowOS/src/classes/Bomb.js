@@ -26,13 +26,8 @@ export class Bomb extends Phaser.GameObjects.Image {
     }
 
     execute() {
-        /**
-         * Handle bomb app opening. Launches the bombApp scene.
-         */
-        let keyE = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
-
         // If the app is already open, don't allow repeated execution
-        if (keyE.isDown && !this.isOpen) {
+        if (!this.isOpen) {
             this.isOpen = true;
             this.scene.scene.launch('bombApp');
             return this.fileObject;
