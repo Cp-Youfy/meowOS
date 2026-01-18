@@ -36,5 +36,11 @@
         "type": "folder",
         "name": "sample_folder_2",
         "children": []
+    },
+    {
+        "id": "3",
+        "type": "pseudo-fs",
+        "name": "proc",
+        "children": []
     }
 ]

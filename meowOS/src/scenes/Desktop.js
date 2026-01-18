@@ -33,6 +33,7 @@ export class DesktopBase extends Phaser.Scene {
 
         // Global Data Manager
         this.registry.set('explorerStack', []) // Used to track parent explorers
+        this.registry.set('processes', [])
 
         // Factor to scale player by
         let scaleFactor = 0.2
@@ -94,6 +95,9 @@ export class DesktopBase extends Phaser.Scene {
 
         let folder2 = new Folder(this, 500, 300, "2", this.folderScale);
         this.folders.add(folder2);
+
+        this.procDir = new Folder(this, 800, 400, "3", this.folderScale);
+        this.folders.add(this.procDir);
     }
 
     loadBomb() {
@@ -136,8 +140,8 @@ export class DesktopBase extends Phaser.Scene {
         if (bombData !== null) {
             this.scene.start('bombApp');
         }
-
     }
+
     sceneTransitionExplorer(folderData, interactiveObj) {
         // Generate necessary context for Explorer scene
         let explorerCoords = getRandomCoords(0, this.canvasSize.width, this.spawnTop, this.spawnBottom, this.tabSize);
