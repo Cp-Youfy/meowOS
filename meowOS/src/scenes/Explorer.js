@@ -20,6 +20,7 @@ export class Explorer extends Phaser.Scene {
         this.y = context.posData.y;
         this.folderData = context.folderData;
         this.size = context.size;
+        this.folderObjOrig = context.folderObj;
     }
 
     preload() {
@@ -38,7 +39,7 @@ export class Explorer extends Phaser.Scene {
         this.folderScale = 0.1;
 
         // Initialise external objects
-        let player = new Player(this, this.x, this.y, scaleFactor).setOrigin(0, 0);
+        let player = new Player(this, this.x + this.size.width - 90, this.y, scaleFactor).setOrigin(0, 0);
         let navbar = new ExplorerBar(this);
         this.loadFolders();
 
@@ -113,10 +114,28 @@ export class Explorer extends Phaser.Scene {
             if (folderData !== null) {
                 // Executed
                 // Don't pause DesktopBase so that the terminal keeps running
-                this.sceneTransitionExplorer(folderData)
+                this.sceneTransitionExplorer(folderData, interactiveObj)
             }
             // If null, there was no execution done.
         }
+    }
+
+    sceneTransitionExplorer(folderData, interactiveObj) {
+        // Generate necessary context for Explorer scene
+        let explorerCoords = getRandomCoords(0, this.scene.get('DesktopBase').canvasSize.width, this.scene.get('DesktopBase').spawnTop, this.scene.get('DesktopBase').spawnBottom, this.tabSize);
+
+        // Clean up necessary sprites on Desktop (Don't pause DesktopBase so that the terminal keeps running)
+        this.player.disable();
+
+        // Launch explorer
+        this.terminal.write("\n- Spawned new Explorer instance for directory " + folderData.name)
+
+        this.scene.launch('Explorer', {
+            'posData': explorerCoords,
+            'folderData': folderData,
+            'size': this.tabSize,
+            'folderObj': interactiveObj // So we can reset folder state when the Explorer is closed
+        });
     }
 
     close() {
@@ -131,9 +150,9 @@ export class Explorer extends Phaser.Scene {
             this.navbar.destroy();
             this.folders.clear(true, true)
             this.folderPosArr = [];
+            this.folderObjOrig.isOpen = false;
 
             // Transition scene
-            console.log(this)
             this.scene.get('DesktopBase').player.enable();
             this.scene.stop();
         }

@@ -99,13 +99,13 @@ export class DesktopBase extends Phaser.Scene {
             if (folderData !== null) {
                 // Executed
                 // Don't pause DesktopBase so that the terminal keeps running
-                this.sceneTransitionExplorer(folderData)
+                this.sceneTransitionExplorer(folderData, interactiveObj)
             }
             // If null, there was no execution done.
         }
     }
 
-    sceneTransitionExplorer(folderData) {
+    sceneTransitionExplorer(folderData, interactiveObj) {
         // Generate necessary context for Explorer scene
         let explorerCoords = getRandomCoords(0, this.canvasSize.width, this.spawnTop, this.spawnBottom, this.tabSize);
 
@@ -118,7 +118,8 @@ export class DesktopBase extends Phaser.Scene {
         this.scene.launch('Explorer', {
             'posData': explorerCoords,
             'folderData': folderData,
-            'size': this.tabSize
+            'size': this.tabSize,
+            'folderObj': interactiveObj // So we can reset folder state when the Explorer is closed
         });
     }
 
@@ -135,8 +136,9 @@ export class DesktopBase extends Phaser.Scene {
         /**
          * Additional tunneling guard that relocates the player above the terminal if it is below the allowed y-boundary
          */
+
         if (this.player.y > this.spawnBottom) {
-            this.player.y = this.spawnBottom + 30
+            this.player.y = this.spawnBottom - this.player.displayHeight;
         }
     }
 }
