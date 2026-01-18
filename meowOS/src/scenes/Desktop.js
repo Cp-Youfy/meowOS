@@ -129,17 +129,15 @@ export class DesktopBase extends Phaser.Scene {
         /**
          * Handle collision with bomb icon and transition to BombApp scene.
          */
-        if (player.body.touching.down && bomb.body.touching.up) {
-            this.setCollidingVelocity();
-            bomb.isColliding = true;
-            let bombData = bomb.execute();
+        this.setCollidingVelocity();
+        bomb.isColliding = true;
+        let bombData = bomb.execute();
 
-            if (bombData !== null) {
-                this.scene.start('bombApp');
-            }
+        if (bombData !== null) {
+            this.scene.start('bombApp');
         }
-    }
 
+    }
     sceneTransitionExplorer(folderData, interactiveObj) {
         // Generate necessary context for Explorer scene
         let explorerCoords = getRandomCoords(0, this.canvasSize.width, this.spawnTop, this.spawnBottom, this.tabSize);
